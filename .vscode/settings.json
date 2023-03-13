@@ -1,0 +1,13 @@
+{
+  "workbench.colorCustomizations": {
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#1de2db",
+    "titleBar.activeBackground": "#17b6b0",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#17b6b099",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.remoteColor": "#17b6b0",
+  "typescript.tsdk": "node_modules/.pnpm/typescript@4.9.5/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}
