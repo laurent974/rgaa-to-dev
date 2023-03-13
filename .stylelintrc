@@ -1,0 +1,9 @@
+{
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-property-sort-order-smacss"],
+  "rules": {
+    "string-quotes": "double"
+  },
+  "plugins": [
+		"stylelint-order"
+	],
+}
