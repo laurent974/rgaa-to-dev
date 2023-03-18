@@ -2,11 +2,18 @@
 
 import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote'
 import React from 'react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import { vs } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { lioshi } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import Button from './mdx/Button';
 
 type MdxContentProps = {
   source: MDXRemoteSerializeResult;
 }
+
+SyntaxHighlighter.registerLanguage('javascript', js);
+
 
 const MdxComponents = {
    /** h1 colored in yellow */
@@ -15,17 +22,13 @@ const MdxComponents = {
   ),
 
   /** Button */
-  Button: (props: React.HTMLProps<HTMLDivElement>): JSX.Element => (
-    <div
-      { ...props }
-    />
+  Button: (props: React.HTMLProps<HTMLButtonElement>): JSX.Element => (
+    <Button { ...props } />
   ),
 
   /** SyntaxHighlighter */
   SyntaxHighlighter: (props: any): JSX.Element => (
-    <SyntaxHighlighter language="javascript"
-      {...props}
-    />
+    <SyntaxHighlighter language="javascript" style={vs} {...props} />
   )
 }
 

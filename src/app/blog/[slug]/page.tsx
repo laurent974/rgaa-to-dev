@@ -41,7 +41,6 @@ const BlogPage:(props: any) => Promise<JSX.Element> = async (props: any): Promis
 
   return (
     <div>
-      <h1>Blog page: { slug }</h1>
       <h1>{frontmatter.title}</h1>
       <p>Published {frontmatter.date}</p>
       <MdxContent source={ serialized }/>

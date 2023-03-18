@@ -3,6 +3,9 @@ title: 'SolidJS: A Beginners Guide'
 date: 'September 11, 2021'
 description: "Here's an introduction to SolidJS"
 ---
+
+# Ici un test de h1
+
 <div>
   This is a blog post about <strong>SolidJS</strong>. <br/>
   We'll learn about SolidJS and how to build with it.
@@ -15,8 +18,21 @@ We just used a `###` subheading in our blog post.
 
 <SyntaxHighlighter language="javascript">
   {`
-    const doStuff = () => {
-      return console.log('hey')
+    const getPostData: () => Post[] = (): Post[] => {
+      const files: string[] = fs.readdirSync(path.join('src', 'posts'))
+
+      const posts: Post[] = files.map((filename: string): Post => {
+        const folder = path.resolve(process.cwd(), "src");
+        const markdownWithMeta: string = fs.readFileSync(path.join(folder, 'posts', filename), 'utf-8')
+        const { data: frontMatter } = matter(markdownWithMeta)
+
+        return {
+          frontMatter,
+          slug: filename.split('.')[0]
+        }
+      })
+
+      return posts
     }
   `}
 </SyntaxHighlighter>
@@ -28,4 +44,4 @@ We just used a `###` subheading in our blog post.
   }
 ```
 
-<div>Here, I'm using a component inside my MarkDown file: {<Button text={"Click me"}/>}</div>
+<div>Here, I'm using a component inside my MarkDown file: <Button value={"Click me"}/></div>
