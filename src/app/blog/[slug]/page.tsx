@@ -3,6 +3,7 @@ import { promises as fs } from 'fs'
 import { serialize } from 'next-mdx-remote/serialize'
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { MdxContent } from '@/components/MdxContent';
+import path from 'path';
 
 type Frontmatter = {
   title: string;
@@ -15,7 +16,8 @@ type Post<TFrontmatter> = {
 }
 
 const getPostContent: (slug: string) => Promise<Post<Frontmatter>> = async (slug: string): Promise<Post<Frontmatter>> => {
-  const folder = "src/posts/"
+  const folderSrc = path.resolve(process.cwd(), "src");
+  const folder = `${folderSrc}/posts/`
   const file = `${folder}${slug}.mdx`
   const content: string = await fs.readFile(file, 'utf-8')
 
