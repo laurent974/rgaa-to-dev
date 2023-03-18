@@ -2,7 +2,7 @@ import Nav from '@/components/Nav'
 import { NextSeo } from 'next-seo'
 import './styles/globals.scss'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="fr">
       <head>

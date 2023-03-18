@@ -14,13 +14,13 @@ type Post<TFrontmatter> = {
   frontmatter: TFrontmatter;
 }
 
-const getPostContent = async (slug: string): Promise<Post<Frontmatter>> => {
+const getPostContent: (slug: string) => Promise<Post<Frontmatter>> = async (slug: string): Promise<Post<Frontmatter>> => {
   const folder = "src/posts/"
   const file = `${folder}${slug}.mdx`
-  const content = await fs.readFile(file, 'utf-8')
+  const content: string = await fs.readFile(file, 'utf-8')
 
   // Serialize the MDX content and parse the frontmatter
-  const serialized = await serialize(content, {
+  const serialized: MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>> = await serialize(content, {
     parseFrontmatter: true,
   });
 
@@ -33,8 +33,8 @@ const getPostContent = async (slug: string): Promise<Post<Frontmatter>> => {
   }
 }
 
-const BlogPage = async (props: any) => {
-  const slug = props.params.slug
+const BlogPage:(props: any) => Promise<JSX.Element> = async (props: any): Promise<JSX.Element> => {
+  const slug: string = props.params.slug
   const { frontmatter, serialized } = await getPostContent(slug)
 
   return (

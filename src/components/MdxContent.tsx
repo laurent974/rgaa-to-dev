@@ -10,25 +10,25 @@ type MdxContentProps = {
 
 const MdxComponents = {
    /** h1 colored in yellow */
-  h1: (props: React.HTMLProps<HTMLHeadingElement>) => (
+  h1: (props: React.HTMLProps<HTMLHeadingElement>): JSX.Element => (
     <h1 style={{ color: '#FFF676' }} {...props} />
   ),
 
   /** Button */
-  Button: (props: React.HTMLProps<HTMLDivElement>) => (
+  Button: (props: React.HTMLProps<HTMLDivElement>): JSX.Element => (
     <div
       { ...props }
     />
   ),
 
   /** SyntaxHighlighter */
-  SyntaxHighlighter: (props: any) => (
+  SyntaxHighlighter: (props: any): JSX.Element => (
     <SyntaxHighlighter language="javascript"
       {...props}
     />
   )
 }
 
-export function MdxContent({ source }: MdxContentProps) {
+export function MdxContent({ source }: MdxContentProps): JSX.Element {
   return <MDXRemote {...source} components={MdxComponents} />;
 }
