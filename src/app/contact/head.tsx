@@ -2,7 +2,7 @@ import { NextSeo, NextSeoProps } from 'next-seo';
 
 import { NEXT_SEO_DEFAULT } from '../../../next-seo.config';
 
-export default async function Head() {
+export default async function Head(): Promise<JSX.Element> {
   const updateMeta: NextSeoProps = {
     ...NEXT_SEO_DEFAULT,
     title: 'Contact | RGAA to dev',
