@@ -8,13 +8,6 @@ const nextConfig = {
   reactStrictMode: true,
   webpack: (config, options) => {
     config.plugins.push(new StylelintPlugin());
-
-    config.module.rules.push(
-      {
-        test: /\.mdx$/,
-        use: 'raw-loader',
-      }
-    )
     return config;
   },
 }

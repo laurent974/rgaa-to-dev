@@ -29,7 +29,8 @@ const getPostData: () => Post[] = (): Post[] => {
   const files: string[] = fs.readdirSync(path.join('src', 'posts'))
 
   const posts: Post[] = files.map((filename: string): Post => {
-    const markdownWithMeta: string = fs.readFileSync(path.join('src', 'posts', filename), 'utf-8')
+    const folder = path.resolve(process.cwd(), "src");
+    const markdownWithMeta: string = fs.readFileSync(path.join(folder, 'posts', filename), 'utf-8')
     const { data: frontMatter } = matter(markdownWithMeta)
 
     return {
