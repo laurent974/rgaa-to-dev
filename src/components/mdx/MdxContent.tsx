@@ -6,7 +6,7 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import { vs } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { lioshi } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import Button from './mdx/Button';
+import Button from './Button';
 
 type MdxContentProps = {
   source: MDXRemoteSerializeResult;
