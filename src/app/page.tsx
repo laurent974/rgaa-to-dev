@@ -1,4 +1,4 @@
-import styles from './styles/page.module.scss'
+import styles from '../styles/pages/page.module.scss'
 import fs from 'fs'
 import * as path from 'path'
 import matter from 'gray-matter'
