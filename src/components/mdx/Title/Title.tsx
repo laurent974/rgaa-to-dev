@@ -1,4 +1,4 @@
-const Title: () => JSX.Element = () => {
+const Title: React.FC = () => {
   return (
     <h1>TItle</h1>
   )

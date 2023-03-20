@@ -4,6 +4,7 @@ import fs, { Dirent } from 'fs'
 import matter from "gray-matter"
 import Link from "next/link"
 import path from "path"
+import styles from './Nav.module.scss'
 
 const getPostData: () => PostDetail[] = () => {
   const files: Dirent[] = fs.readdirSync(path.join('src', 'posts'), { withFileTypes: true }).filter(dirent => dirent.isFile())
@@ -21,7 +22,7 @@ const getPostData: () => PostDetail[] = () => {
   return posts
 }
 
-const Nav: () => JSX.Element = (): JSX.Element => {
+export const Nav: React.FC = () => {
   const posts: any = getPostData()
 
   const collections: Collection[] = [
@@ -31,7 +32,7 @@ const Nav: () => JSX.Element = (): JSX.Element => {
   ]
 
   return (
-    <nav aria-label="Menu principal">
+    <nav aria-label="Menu principal" className={ styles.nav }>
       <ul>
         <li><Link href="/">Accueil</Link></li>
 
@@ -59,5 +60,3 @@ const Nav: () => JSX.Element = (): JSX.Element => {
     </nav>
   )
 }
-
-export default Nav
