@@ -1,6 +1,6 @@
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
-import Frontmatter from '../types/frontmatter';
-import Post from '../types/post';
+import Frontmatter from '../types/Frontmatter';
+import Post from '../types/Post';
 import path from "path";
 import { serialize } from 'next-mdx-remote/serialize'
 import { promises as fs } from 'fs'
