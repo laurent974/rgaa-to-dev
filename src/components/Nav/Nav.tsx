@@ -1,35 +1,31 @@
-import Collection from "@/lib/types/Collection"
-import PostDetail from "@/lib/types/PostDetail"
-import fs, { Dirent } from 'fs'
+import fs from 'fs'
+import { globby } from "globby"
 import matter from "gray-matter"
 import Link from "next/link"
 import path from "path"
 import styles from './Nav.module.scss'
 
-const getPostData: () => PostDetail[] = () => {
-  const files: Dirent[] = fs.readdirSync(path.join('src', 'posts'), { withFileTypes: true }).filter(dirent => dirent.isFile())
-  const posts: PostDetail[] = files.map((filename: Dirent): PostDetail => {
-    const folder = path.resolve(process.cwd(), "src");
-    const markdownWithMeta: string = fs.readFileSync(path.join(folder, 'posts', filename.name), 'utf-8')
+const getPostData = async () => {
+  const listAllFilesAndDirs = (dir: string) => globby(`${dir}/**/*`);
+  let posts: any = []
+
+  const files = await listAllFilesAndDirs(path.resolve(process.cwd(), "src/posts"));
+
+  files.map((file: string) => {
+    const markdownWithMeta: string = fs.readFileSync(file, 'utf-8')
     const { data: frontMatter } = matter(markdownWithMeta)
 
-    return {
+    posts.push({
       frontMatter,
-      slug: filename.name.split('.')[0]
-    }
+      slug: file.replace(/.*(?=posts)/gm, '').replace('posts/', '').replace('/index', '').split('.')[0]
+    })
   })
 
   return posts
 }
 
-export const Nav: React.FC = () => {
-  const posts: any = getPostData()
-
-  const collections: Collection[] = [
-    { title: 'Conception de projet', slug: 'conception-de-projet', url: '/conception-de-projet' },
-    { title: 'UX / UI', slug: 'ux-ui', url: '/ux-ui' },
-    { title: 'Développement', slug: 'developpement', url: '/developpement' }
-  ]
+export const Nav: any = async () => {
+  const posts = await getPostData()
 
   return (
     <nav aria-label="Menu principal" className={ styles.nav }>
@@ -37,15 +33,15 @@ export const Nav: React.FC = () => {
         <li><Link href="/">Accueil</Link></li>
 
         {
-          collections.map((collection: Collection, index: number): JSX.Element => (
-            <li className="has-submenu" key={index}>
-              <Link href="/" aria-expanded="false">{ collection.title }</Link>
-              <button aria-expanded="false">
-                <span className="visually-hidden">Ouvre le sous-menu de { collection.title }</span>
-              </button>
+          // collections.map((collection: Collection, index: number): JSX.Element => (
+          //   <li className="has-submenu" key={index}>
+          //     <Link href="/" aria-expanded="false">{ collection.title }</Link>
+          //     <button aria-expanded="false">
+          //       <span className="visually-hidden">Ouvre le sous-menu de { collection.title }</span>
+          //     </button>
 
               <ul>
-                {posts.filter((post:any) => post.frontMatter.collection === collection.slug).map((post: any, index: number): JSX.Element => (
+                {posts.map((post: any, index: number): JSX.Element => (
                   <li key={ index }>
                     <Link href={ `/${ post.frontMatter.collection }/` + post.slug } passHref key={index}>
                       { post.frontMatter.title }
@@ -53,8 +49,8 @@ export const Nav: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </li>
-          ))
+          //   {/*</li>
+          // )) */}
         }
       </ul>
     </nav>
