@@ -1,9 +1,14 @@
-import { MdxContent } from '@/components/mdx/MdxContent';
-import getPostContent from '@/lib/api/get-post-content';
+import { MdxContent } from '@/components/mdx/MdxContent'
+import getPostContent from '@/lib/api/get-post-content'
 
-const BlogPage:(props: any) => Promise<JSX.Element> = async (props) => {
-  const arrayToPath: any = (arr: any[]) => arr.join('/')
-  const path = arrayToPath(props.params.slug)
+const BlogPage = async ({
+  params,
+}: {
+  params: { slug: string[] }
+  searchParams?: { [key: string]: string | string[] | undefined }
+}) => {
+  const arrayToPath = (arr: string[]) => arr.join('/')
+  const path: string = arrayToPath(params.slug)
   const { frontmatter, serialized } = await getPostContent(path)
 
   return (
@@ -11,7 +16,7 @@ const BlogPage:(props: any) => Promise<JSX.Element> = async (props) => {
       <h1>parametres</h1>
       <h1>{frontmatter.title}</h1>
       <p>Published {frontmatter.date}</p>
-      <MdxContent source={ serialized }/>
+      <MdxContent source={serialized} />
     </div>
   )
 }

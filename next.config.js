@@ -1,4 +1,4 @@
-const StylelintPlugin = require("stylelint-webpack-plugin"); // line to add
+const StylelintPlugin = require("stylelint-webpack-plugin");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -6,7 +6,7 @@ const nextConfig = {
     appDir: true,
   },
   reactStrictMode: true,
-  webpack: (config, options) => {
+  webpack: (config) => {
     config.plugins.push(new StylelintPlugin());
     return config;
   },
