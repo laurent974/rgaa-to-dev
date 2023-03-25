@@ -4,7 +4,6 @@ import Post from '../types/Post'
 import path from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
 import { promises as fs } from 'fs'
-import * as oldfs from 'fs'
 
 const getPostContent: (slug: string) => Promise<Post<Frontmatter>> = async (
   slug: string
@@ -15,14 +14,10 @@ const getPostContent: (slug: string) => Promise<Post<Frontmatter>> = async (
   let content: string
 
   try {
-    await fs.access(
-      file,
-      oldfs.constants.F_OK | oldfs.constants.W_OK | oldfs.constants.R_OK
-    )
+    await fs.access(file)
     content = await fs.readFile(file, 'utf-8')
     /* eslint-disable  @typescript-eslint/no-explicit-any */
   } catch (error: any) {
-    console.log(error)
     content = await fs.readFile(`${folder}${slug}/index.mdx`, 'utf-8')
   }
 
