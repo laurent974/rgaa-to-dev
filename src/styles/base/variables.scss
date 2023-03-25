@@ -1,0 +1,45 @@
+:root {
+  // Colors
+  --black: #0A0A0D;
+  --white: #fff;
+  --gray-10: #3B3B3D;
+  --gray-20: #484C57;
+  --gray-30: #80899A;
+  --gray-40: #D6D6DB;
+  --gray-50: #ECEDEE;
+  --yellow-10: #F8C231;
+  --yellow-20: #FFF6C5;
+  --red-10: #FF445E;
+  --red-20: #FFC5CF;
+  --pink-10: #FF5AD1;
+  --pink-20: #FFE9FA;
+  --green-10: #00BB83;
+  --green-20: #BEFFEC;
+  --blue-10: #0560FF;
+  --blue-20: #B7F2FF;
+  --orange-10: #FF6928;
+  --orange-20: #FFE5D7;
+
+  // Gradient
+  --gradient-retro-1: linear-gradient(85.69deg, #D400A5 5.24%, #1E76C9 55.57%, #35FCED 98.16%);
+  --gradient-retro-2: linear-gradient(90.42deg, #4AB1F1 0.58%, #566CEC 37.22%, #D749AF 73.87%, #FF7C51 112.26%);
+  --gradient-sky-1: linear-gradient(90deg, #80D0F2 0%, #5C82FF 50%, #C480FF 100%);
+  --gradient-sky-2: linear-gradient(90deg, #47189C 0%, #3861BC 50%, #80D6E1 100%);
+  --gradient-sky-3: linear-gradient(90deg, #1584EB 0%, #24D6D9 97.34%);
+  --gradient-rose-1: linear-gradient(73.19deg, #DF51AD 0%, #EB587D 95.06%);
+  --gradient-rose-2: linear-gradient(73.19deg, #AE41C5 0%, #EA29DE 95.06%);
+  --gradient-sunset: linear-gradient(90deg, #F7BE2B 0%, #F537F9 100%);
+  --gradient-floral: linear-gradient(90deg, #8D2DE3 0%, #FF2497 97.34%);
+  --gradient-dreamy-1: linear-gradient(73.19deg, #DC79FF 0%, #256BFA 95.06%);
+  --gradient-dreamy-2: linear-gradient(73.19deg, #5606EF 0%, #8938D1 95.06%);
+
+  // Font-size
+  --fz-16: 1.6rem;
+  --fz-18: 1.8rem;
+  --fz-20: 20rem;
+  --fz-24: 24rem;
+  --fz-32: 32rem;
+
+  // Spaces
+  --test: black;
+}

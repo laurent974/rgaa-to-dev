@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import styles from './Nav.module.scss'
 import matter from 'gray-matter'
+import Link from 'next/link'
 
 type MenuItem = {
   title: string
@@ -81,12 +82,24 @@ export const Nav = () => {
         .filter((item) => item.link.indexOf('index') < 0)
         .map((item, index) => (
           <li key={index}>
-            <a href={item.link}>{item.title}</a>
+            <Link href={item.link}>{item.title}</Link>
             {item.children && renderMenu(item.children)}
           </li>
         ))}
     </ul>
   )
 
-  return <nav className={styles.nav}>{renderMenu(menuData)}</nav>
+  return (
+    <nav className={styles.nav}>
+      <ul>
+        <li>
+          <Link href="/">Accueil</Link>
+        </li>
+        {renderMenu(menuData)}
+        <li>
+          <Link href="/contact">Contact</Link>
+        </li>
+      </ul>
+    </nav>
+  )
 }

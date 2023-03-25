@@ -1,6 +1,11 @@
 // Base
+@import "base/variables";
 @import "base/reset";
 @import "base/base";
 
 // Utility
 @import "utils/visually-hidden";
+
+// Schemes
+@import "schemes/light";
+@import "schemes/dark";
