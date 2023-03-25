@@ -1,0 +1,49 @@
+---
+title: 'SolidJS: A Beginners Guide'
+date: 'September 11, 2021'
+description: "Here's an introduction to SolidJS"
+collection: 'conception-de-projet'
+weight: 20
+---
+
+# Ici un test de h1
+
+<div>
+  This is a blog post about <strong>SolidJS</strong>. <br/>
+  We'll learn about SolidJS and how to build with it.
+</div>
+
+<br/>
+
+### This is a Markdown sub-heading
+We just used a `###` subheading in our blog post.
+
+<SyntaxHighlighter language="javascript">
+  {`
+    const getPostData: () => Post[] = (): Post[] => {
+      const files: string[] = fs.readdirSync(path.join('src', 'posts'))
+
+      const posts: Post[] = files.map((filename: string): Post => {
+        const folder = path.resolve(process.cwd(), "src");
+        const markdownWithMeta: string = fs.readFileSync(path.join(folder, 'posts', filename), 'utf-8')
+        const { data: frontMatter } = matter(markdownWithMeta)
+
+        return {
+          frontMatter,
+          slug: filename.split('.')[0]
+        }
+      })
+
+      return posts
+    }
+  `}
+</SyntaxHighlighter>
+
+```
+  // this is a code block
+  const doSomething = () => {
+    return console.log('hey')
+  }
+```
+
+<div>Here, I'm using a component inside my MarkDown file: <Button value={"Click me"}/></div>

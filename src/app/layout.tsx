@@ -1,19 +1,22 @@
-import Nav from '@/components/Nav'
+import { Nav } from '@/components/Nav'
 import { NextSeo } from 'next-seo'
-import './styles/globals.scss'
+import { NEXT_SEO_DEFAULT } from '../../next-seo.config';
+import '../styles/main.scss'
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="fr">
       <head>
         <NextSeo
-          useAppDir={true}
+          {...NEXT_SEO_DEFAULT}
+          useAppDir={ true }
           themeColor="#456789"
         />
       </head>
+
       <body>
-        <Nav/>
-        {children}
+        <Nav />
+        { children }
       </body>
     </html>
   )
