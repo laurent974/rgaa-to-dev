@@ -10,6 +10,7 @@ type MenuItem = {
 }
 
 const buildMenu = (parentFolder: string, currentFolder: string): MenuItem => {
+  const racine: string = path.join(process.cwd(), 'src', 'posts')
   const currentPath: string = path.join(parentFolder, currentFolder)
   const items: MenuItem[] = fs
     .readdirSync(currentPath)
@@ -23,7 +24,10 @@ const buildMenu = (parentFolder: string, currentFolder: string): MenuItem => {
 
       return {
         title: frontMatter.title,
-        link: path.join('/', currentFolder, name.replace('.mdx', '')),
+        link: path.join(
+          currentPath.replace(racine, ''),
+          name.replace('.mdx', '')
+        ),
       }
     })
 
@@ -41,7 +45,7 @@ const buildMenu = (parentFolder: string, currentFolder: string): MenuItem => {
 
     return {
       title: frontMatter.title,
-      link: path.join('/', currentFolder),
+      link: currentPath.replace(racine, ''),
       children: [...items, ...children],
     }
   }
@@ -54,7 +58,7 @@ const buildMenu = (parentFolder: string, currentFolder: string): MenuItem => {
 
   return {
     title: frontMatter.title,
-    link: path.join('/', currentFolder),
+    link: currentPath.replace(racine, ''),
     children: items,
   }
 }

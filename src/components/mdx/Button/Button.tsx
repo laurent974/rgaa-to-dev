@@ -1,8 +1,3 @@
-
 export const Button: React.FC<React.HTMLProps<HTMLButtonElement>> = (props) => {
-  return (
-    <button>
-      { props.value }
-    </button>
-  )
+  return <button>{props.value}</button>
 }
