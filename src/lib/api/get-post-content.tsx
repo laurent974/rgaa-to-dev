@@ -22,6 +22,7 @@ const getPostContent: (slug: string) => Promise<Post<Frontmatter>> = async (
     content = await fs.readFile(file, 'utf-8')
     /* eslint-disable  @typescript-eslint/no-explicit-any */
   } catch (error: any) {
+    console.log(error)
     content = await fs.readFile(`${folder}${slug}/index.mdx`, 'utf-8')
   }
 
