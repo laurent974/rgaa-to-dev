@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import fs from 'fs'
 import path from 'path'
 import styles from './Nav.module.scss'
+import matter from 'gray-matter'
 
 type MenuItem = {
   title: string
@@ -18,17 +19,24 @@ const buildMenu = (parentFolder: string, currentFolder: string): MenuItem => {
   const items = fs.readdirSync(currentPath)
     .filter(name => name.endsWith('.mdx'))
     .map(name => {
+      const markdownWithMeta: string = fs.readFileSync(path.join(currentPath, name), 'utf-8')
+      const { data: frontMatter } = matter(markdownWithMeta)
+
       return {
-        title: name.replace('.mdx', ''),
+        title: frontMatter.title,
         link: path.join('/', currentFolder, name.replace('.mdx', ''))
       }
     })
   const children = fs.readdirSync(currentPath)
     .filter(name => fs.lstatSync(path.join(currentPath, name)).isDirectory())
     .map(name => buildMenu(currentPath, name))
+
   if (children.length) {
+    const markdownWithMeta: string = fs.readFileSync(path.join(parentFolder, currentFolder, '/index.mdx'), 'utf-8')
+    const { data: frontMatter } = matter(markdownWithMeta)
+
     return {
-      title: currentFolder,
+      title: frontMatter.title,
       link: path.join('/', currentFolder),
       children: [
         ...items,
@@ -37,8 +45,11 @@ const buildMenu = (parentFolder: string, currentFolder: string): MenuItem => {
     }
   }
 
+  const markdownWithMeta: string = fs.readFileSync(path.join(parentFolder, currentFolder, '/index.mdx'), 'utf-8')
+  const { data: frontMatter } = matter(markdownWithMeta)
+
   return {
-    title: currentFolder,
+    title: frontMatter.title,
     link: path.join('/', currentFolder),
     children: items
   }
