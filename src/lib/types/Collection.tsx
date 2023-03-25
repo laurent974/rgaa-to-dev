@@ -1,6 +1,6 @@
 type Collection = {
-  title: string,
-  slug: string,
+  title: string
+  slug: string
   url: string
 }
 
