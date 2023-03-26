@@ -57,8 +57,16 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
+        <header>
+          <div>Breadcrumb</div>
+          <div>Recherche input</div>
+        </header>
+
         <Nav />
-        {children}
+
+        <main>{children}</main>
+
+        <footer>ici le footer</footer>
       </body>
     </html>
   )

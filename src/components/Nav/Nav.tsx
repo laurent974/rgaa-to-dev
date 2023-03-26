@@ -3,6 +3,7 @@ import path from 'path'
 import styles from './Nav.module.scss'
 import matter from 'gray-matter'
 import Link from 'next/link'
+import { Fragment } from 'react'
 
 type MenuItem = {
   title: string
@@ -72,34 +73,63 @@ const buildMenuData = (rootFolder: string): MenuItem[] => {
 }
 
 export const Nav = () => {
+  const index = 0
   const menuData: MenuItem[] = buildMenuData(
     path.join(process.cwd(), 'src', 'posts')
   )
+  const lastItem = menuData[menuData.length - 1]
 
-  const renderMenu = (menuItems: MenuItem[]) => (
-    <ul className={styles.list}>
-      {menuItems
-        .filter((item) => item.link.indexOf('index') < 0)
-        .map((item, index) => (
-          <li key={index}>
-            <Link href={item.link}>{item.title}</Link>
-            {item.children && renderMenu(item.children)}
+  const renderMenu = (menuItems: MenuItem[], i: number, id?: string) => {
+    return (
+      <ul className={styles.list} id={id}>
+        {i === 0 ? (
+          <li key={`accueil-${Math.random()}`}>
+            <Link href="/">Accueil</Link>
           </li>
-        ))}
-    </ul>
-  )
+        ) : (
+          ''
+        )}
+
+        {menuItems
+          .filter((item) => item.link.indexOf('index') < 0)
+          .map((item, index) => (
+            <Fragment key={index}>
+              <li>
+                <Link href={item.link}>{item.title}</Link>
+                {item.children ? (
+                  <button
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls={item.link.replace(/\//g, '_')}
+                    aria-label={`Ouvrir le sous-menu de ${item.title}`}
+                  ></button>
+                ) : (
+                  ''
+                )}
+                {item.children &&
+                  renderMenu(
+                    item.children,
+                    i + 1,
+                    item.link.replace(/\//g, '_')
+                  )}
+              </li>
+
+              {item.link === lastItem.link ? (
+                <li key={`contact-${Math.random()}`}>
+                  <Link href="/contact">Contact</Link>
+                </li>
+              ) : (
+                ''
+              )}
+            </Fragment>
+          ))}
+      </ul>
+    )
+  }
 
   return (
-    <nav className={styles.nav}>
-      <ul>
-        <li>
-          <Link href="/">Accueil</Link>
-        </li>
-        {renderMenu(menuData)}
-        <li>
-          <Link href="/contact">Contact</Link>
-        </li>
-      </ul>
+    <nav className={styles.nav} aria-label="Menu principal">
+      {renderMenu(menuData, index)}
     </nav>
   )
 }
