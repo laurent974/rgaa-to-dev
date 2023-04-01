@@ -1,0 +1,19 @@
+:root {
+  // Body
+  --body-background: var(--white);
+  --body-color: var(--black);
+  --outline: var(--blue-10);
+
+  // Skiplinks
+  --skiplinks-background: var(--gray-50);
+
+  // Buttons
+  --button-background: var(--purple);
+  --button-hover-background: var(--pink-10);
+  --button-color: var(--white);
+
+  // Nav
+  --nav-background: var(--gray-10);
+  --nav-icon-color: var(--gray-40);
+  --nav-icon-color-hover: var(--gray-20);
+}
