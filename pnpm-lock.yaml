@@ -17,6 +17,7 @@ specifiers:
   prettier: ^2.8.7
   react: 18.2.0
   react-dom: 18.2.0
+  react-icons: ^4.8.0
   react-syntax-highlighter: ^15.5.0
   sass: ^1.59.2
   stylelint: ^15.2.0
@@ -34,6 +35,7 @@ dependencies:
   next-mdx-remote: 4.4.1_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-icons: 4.8.0_react@18.2.0
   react-syntax-highlighter: 15.5.0_react@18.2.0
 
 devDependencies:
@@ -3400,6 +3402,14 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-icons/4.8.0_react@18.2.0:
+    resolution: {integrity: sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:

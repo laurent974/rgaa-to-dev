@@ -3,13 +3,22 @@ import path from 'path'
 import styles from './Nav.module.scss'
 import matter from 'gray-matter'
 import Link from 'next/link'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Image from 'next/image'
+import {
+  RiCodeLine,
+  RiImageEditLine,
+  RiPsychotherapyLine,
+  RiHomeLine,
+  RiMessage3Line,
+  RiArrowRightSLine,
+} from 'react-icons/ri'
 
 type MenuItem = {
   title: string
   link: string
   children?: MenuItem[]
+  icon?: string
 }
 
 const buildMenu = (parentFolder: string, currentFolder: string): MenuItem => {
@@ -79,14 +88,16 @@ export const Nav = () => {
     path.join(process.cwd(), 'src', 'posts')
   )
   const lastItem = menuData[menuData.length - 1]
-  console.log(menuData)
 
   const renderMenu = (menuItems: MenuItem[], i: number, id?: string) => {
     return (
-      <ul className={styles.list} id={id}>
+      <ul className={styles.navList} id={id}>
         {i === 0 ? (
           <li key={`accueil-${Math.random()}`}>
-            <Link href="/">Accueil</Link>
+            <Link href="/" className={styles.navLink}>
+              <RiHomeLine aria-hidden="true" className={styles.navIcon} />
+              <span className="visually-hidden">Accueil</span>
+            </Link>
           </li>
         ) : (
           ''
@@ -96,15 +107,42 @@ export const Nav = () => {
           .filter((item) => item.link.indexOf('index') < 0)
           .map((item, index) => (
             <Fragment key={index}>
-              <li>
-                <Link href={item.link}>{item.title}</Link>
+              <li className={item.children ? styles.navItemWithSubmenu : ''}>
+                <Link href={item.link} className={styles.navLink}>
+                  {item.link === '/conception-de-projet' ? (
+                    <RiPsychotherapyLine
+                      aria-hidden="true"
+                      className={styles.navIcon}
+                    />
+                  ) : (
+                    ''
+                  )}
+                  {item.link === '/developpement' ? (
+                    <RiCodeLine aria-hidden="true" className={styles.navIcon} />
+                  ) : (
+                    ''
+                  )}
+                  {item.link === '/ux-ui' ? (
+                    <RiImageEditLine
+                      aria-hidden="true"
+                      className={styles.navIcon}
+                    />
+                  ) : (
+                    ''
+                  )}
+
+                  <span className="visually-hidden">{item.title}</span>
+                </Link>
                 {item.children ? (
                   <button
                     type="button"
                     aria-expanded="false"
                     aria-controls={item.link.replace(/\//g, '_')}
                     aria-label={`Ouvrir le sous-menu de ${item.title}`}
-                  ></button>
+                    className={styles.navExpandButton}
+                  >
+                    <RiArrowRightSLine />
+                  </button>
                 ) : (
                   ''
                 )}
@@ -118,7 +156,13 @@ export const Nav = () => {
 
               {item.link === lastItem.link ? (
                 <li key={`contact-${Math.random()}`}>
-                  <Link href="/contact">Contact</Link>
+                  <Link href="/contact" className={styles.navLink}>
+                    <RiMessage3Line
+                      aria-hidden="true"
+                      className={styles.navIcon}
+                    />
+                    <span className="visually-hidden">Contact</span>
+                  </Link>
                 </li>
               ) : (
                 ''
@@ -136,9 +180,11 @@ export const Nav = () => {
           src="/logo/logo-small.svg"
           width={40}
           height={40}
-          alt="Retour page d'accueil"
+          alt="Allez page d'accueil"
         />
+        <span className="visually-hidden">Allez à la page d&aposaccueil</span>
       </Link>
+
       <nav id="nav" className={styles.nav} aria-label="Menu principal">
         {renderMenu(menuData, index)}
       </nav>
