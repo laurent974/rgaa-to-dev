@@ -1,0 +1,17 @@
+[tabindex],
+a,
+button,
+details,
+input,
+select,
+textarea,
+video[controls] {
+  outline-color: var(--outline);
+  outline-offset: 2px;
+  outline-width: 2px;
+
+  &:focus-visible,
+  &:focus {
+    outline-style: solid;
+  }
+}

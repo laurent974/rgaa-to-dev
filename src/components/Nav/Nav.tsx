@@ -4,6 +4,7 @@ import styles from './Nav.module.scss'
 import matter from 'gray-matter'
 import Link from 'next/link'
 import { Fragment } from 'react'
+import Image from 'next/image'
 
 type MenuItem = {
   title: string
@@ -78,6 +79,7 @@ export const Nav = () => {
     path.join(process.cwd(), 'src', 'posts')
   )
   const lastItem = menuData[menuData.length - 1]
+  console.log(menuData)
 
   const renderMenu = (menuItems: MenuItem[], i: number, id?: string) => {
     return (
@@ -128,8 +130,18 @@ export const Nav = () => {
   }
 
   return (
-    <nav className={styles.nav} aria-label="Menu principal">
-      {renderMenu(menuData, index)}
-    </nav>
+    <div className={styles.navbar}>
+      <Link href="/">
+        <Image
+          src="/logo/logo-small.svg"
+          width={40}
+          height={40}
+          alt="Retour page d'accueil"
+        />
+      </Link>
+      <nav id="nav" className={styles.nav} aria-label="Menu principal">
+        {renderMenu(menuData, index)}
+      </nav>
+    </div>
   )
 }

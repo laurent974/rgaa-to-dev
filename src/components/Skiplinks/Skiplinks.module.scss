@@ -1,0 +1,33 @@
+.skiplinks {
+  position: absolute;
+  top: 0;
+  padding: 1rem 0 1rem 10rem;
+  background-color: var(--skiplinks-background);
+  transform: translateY(-100%);
+
+  &:focus-within {
+    position: relative;
+    transform: translateY(0);
+  }
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.button {
+  display: flex;
+  padding: 1.2rem 2rem;
+  background-color: var(--button-background);
+  color: var(--button-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s ease;
+
+  &:hover,
+  &:active {
+    background-color: var(--button-hover-background);
+  }
+}

@@ -1,6 +1,15 @@
+import { Breadcrumb } from '@/components/Breadcrumb'
 import { Nav } from '@/components/Nav'
+import { Skiplinks } from '@/components/Skiplinks'
 import { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import '../styles/main.scss'
+
+const inter = Inter({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: { default: 'Accueil', template: '%s | RGAA-101.fr' },
@@ -55,18 +64,20 @@ export default function RootLayout({
   children: React.ReactNode
 }): JSX.Element {
   return (
-    <html lang="fr">
+    <html lang="fr" className={inter.className}>
       <body>
+        <Skiplinks />
+
         <header>
-          <div>Breadcrumb</div>
+          <Breadcrumb />
           <div>Recherche input</div>
         </header>
 
         <Nav />
 
-        <main>{children}</main>
+        <main id="main">{children}</main>
 
-        <footer>ici le footer</footer>
+        <footer id="footer">ici le footer</footer>
       </body>
     </html>
   )

@@ -1,5 +1,18 @@
 .nav {
-  background: black;
+  &bar {
+    position: fixed;
+    top: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3.75rem 1.625rem 1rem;
+    width: 105px;
+    border-radius: 8px;
+    box-shadow: 0 56px 64px -16px rgb(41 15 0 / 56%), 0 64px 64px -32px rgb(102 37 0 / 56%);
+    background-color: var(--nav-background);
+  }
 }
 
 .list {
