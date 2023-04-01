@@ -68,7 +68,7 @@ export default function RootLayout({
       <body>
         <Skiplinks />
 
-        <header>
+        <header className="header">
           <Breadcrumb />
           <div>Recherche input</div>
         </header>
