@@ -1,0 +1,23 @@
+a {
+  --underline-max-width: 100%;
+  --underline-img: linear-gradient(0deg,currentcolor,currentcolor);
+  --underline-hover-width: 0;
+  --underline-x: calc(var(--underline-max-width) * 0);
+  --underline-idle-width: var(--underline-max-width);
+
+  color: blue;
+  text-decoration: none;
+
+  &[href] {
+    background-image: var(--underline-img), var(--underline-img);
+    background-repeat: no-repeat, no-repeat;
+    background-position: var(--underline-x) 100%, var(--underline-x) calc(100% - 0.0625em);
+    background-size: var(--underline-hover-width) 0.125em, var(--underline-idle-width) 0.0625em;
+    transition: background-size 0s;
+
+    &:active,
+    &:hover {
+      --underline-hover-width: var(--underline-max-width);
+    }
+  }
+}

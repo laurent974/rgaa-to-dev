@@ -30,8 +30,14 @@ body {
 header,
 main,
 footer {
-  // margin-right: auto;
-  // margin-left: auto;
   padding-left: 10rem;
   max-width: 1200px;
+}
+
+main {
+  margin-top: 2rem;
+}
+
+* {
+  line-height: 1.5!important;
 }
