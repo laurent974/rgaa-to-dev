@@ -26,6 +26,10 @@
     border-radius: 8px;
     box-shadow: 0 56px 64px -16px rgb(41 0 23 / 56%), 0 64px 64px -32px rgb(0 70 102 / 56%);
     background-color: var(--nav-background);
+
+    a {
+      background-image: none;
+    }
   }
 
   &Icon {

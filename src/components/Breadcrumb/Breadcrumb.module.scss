@@ -1,3 +1,43 @@
 .breadcrumb {
-  color: blue;
+  padding: .875rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
+  background: white;
+
+  &List {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  &Item {
+    &::before {
+      content: "/";
+      display: inline-block;
+      margin-right: 1.25rem;
+      color: black;
+      font-weight: bold;
+    }
+
+    a {
+      color: var(--gray-10);
+    }
+  }
+
+  &Home {
+    background-image: none !important;
+    vertical-align: middle;
+
+    svg {
+      fill: var(--purple);
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover,
+    &:active {
+      svg {
+        fill: var(--pink-10);
+      }
+    }
+  }
 }

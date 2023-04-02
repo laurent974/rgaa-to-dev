@@ -7,9 +7,13 @@
 // Utility
 @import "utils/visually-hidden";
 
-// Layout
-@import "layout/header";
-
 // Schemes
 @import "schemes/light";
 @import "schemes/dark";
+
+// Layout
+@import "layout/header";
+
+// Components
+@import "components/link";
+@import "components/paragraph";

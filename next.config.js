@@ -6,6 +6,7 @@ const nextConfig = {
     appDir: true
   },
   reactStrictMode: true,
+  optimizeFonts: false,
   webpack: (config) => {
     config.plugins.push(new StylelintPlugin());
     return config;

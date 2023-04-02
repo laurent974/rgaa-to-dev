@@ -64,8 +64,8 @@ export default function RootLayout({
   children: React.ReactNode
 }): JSX.Element {
   return (
-    <html lang="fr" className={inter.className}>
-      <body>
+    <html lang="fr">
+      <body className={inter.className}>
         <Skiplinks />
 
         <header className="header">
