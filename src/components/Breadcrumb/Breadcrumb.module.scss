@@ -2,7 +2,7 @@
   padding: .875rem 1.25rem;
   border-radius: 8px;
   box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
-  background: white;
+  background: var(--breadcrumb-background);
 
   &List {
     display: flex;
@@ -14,12 +14,12 @@
       content: "/";
       display: inline-block;
       margin-right: 1.25rem;
-      color: black;
+      color: var(--breadcrumb-separ);
       font-weight: bold;
     }
 
     a {
-      color: var(--gray-10);
+      color: var(--breadcrumb-link);
     }
   }
 
@@ -28,7 +28,7 @@
     vertical-align: middle;
 
     svg {
-      fill: var(--purple);
+      fill: var(--breadcrumb-home);
       width: 16px;
       height: 16px;
     }
@@ -36,7 +36,7 @@
     &:hover,
     &:active {
       svg {
-        fill: var(--pink-10);
+        fill: var(--breadcrumb-home-hover);
       }
     }
   }
